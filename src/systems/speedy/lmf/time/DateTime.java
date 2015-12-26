@@ -1,4 +1,4 @@
-package com.nicholassm.lmf.time;
+package systems.speedy.lmf.time;
 
 /**
  * Utility class for converting milliseconds since the Epoch into date and time values.
