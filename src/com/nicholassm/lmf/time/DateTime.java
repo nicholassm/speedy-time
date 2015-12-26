@@ -1,5 +1,9 @@
 package com.nicholassm.lmf.time;
 
+/**
+ * Utility class for converting milliseconds since the Epoch into date and time values.
+ * Note: Only timestamps after January 1st 1970 are supported.
+ */
 public class DateTime {
 	private final long utcMillis;
 
@@ -10,7 +14,6 @@ public class DateTime {
 	private static final long MILLIS_IN_AN_HOUR  = MILLIS_IN_A_MINUTE * 60L;
 	private static final long MILLIS_IN_A_DAY    = MILLIS_IN_AN_HOUR * 24L;
 
-	// TODO: Only work with positive numbers? (For speed).
 	public DateTime(long utcMillis) {
 		this.utcMillis = utcMillis;
 	}
