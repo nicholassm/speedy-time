@@ -78,7 +78,7 @@ public class DateTime {
 		return (int) ((utcMillis % MILLIS_IN_A_DAY) / MILLIS_IN_AN_HOUR);
 	}
 
-	public static int minuteOf(long utcMillis) {
+	public static int minutesOf(long utcMillis) {
 		assert utcMillis >= 0;
 		return (int) ((utcMillis % MILLIS_IN_AN_HOUR) / MILLIS_IN_A_MINUTE);
 	}
