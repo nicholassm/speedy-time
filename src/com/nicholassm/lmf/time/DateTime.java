@@ -15,6 +15,8 @@ public class DateTime {
 	private static final long MILLIS_IN_A_DAY    = MILLIS_IN_AN_HOUR * 24L;
 
 	public DateTime(long utcMillis) {
+		assert utcMillis >= 0;
+
 		this.utcMillis = utcMillis;
 	}
 
