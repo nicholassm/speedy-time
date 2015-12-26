@@ -88,6 +88,30 @@ public class DateTime {
 		return (int) ((utcMillis % MILLIS_IN_A_MINUTE) / MILLIS_IN_A_SECOND);
 	}
 
+	public int getYear() {
+		return yearOf(utcMillis);
+	}
+
+	public int getMonth() {
+		return monthOf(utcMillis);
+	}
+
+	public int getDayOfMonth() {
+		return dayOfMonthOf(utcMillis);
+	}
+
+	public int getHour() {
+		return hourOf(utcMillis);
+	}
+
+	public int getMinutes() {
+		return minutesOf(utcMillis);
+	}
+
+	public int getSeconds() {
+		return secondsOf(utcMillis);
+	}
+
 	public long asUtcMillis() {
 		return utcMillis;
 	}
