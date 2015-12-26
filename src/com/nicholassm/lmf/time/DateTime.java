@@ -77,16 +77,19 @@ public class DateTime {
 
 	public static int hourOf(long utcMillis) {
 		assert utcMillis >= 0;
+
 		return (int) ((utcMillis % MILLIS_IN_A_DAY) / MILLIS_IN_AN_HOUR);
 	}
 
 	public static int minutesOf(long utcMillis) {
 		assert utcMillis >= 0;
+
 		return (int) ((utcMillis % MILLIS_IN_AN_HOUR) / MILLIS_IN_A_MINUTE);
 	}
 
 	public static int secondsOf(long utcMillis) {
 		assert utcMillis >= 0;
+
 		return (int) ((utcMillis % MILLIS_IN_A_MINUTE) / MILLIS_IN_A_SECOND);
 	}
 
