@@ -88,10 +88,4 @@ public class DateTime {
 	public long asUtcMillis() {
 		return utcMillis;
 	}
-
-	public static void main(String[] args) {
-		long now = System.currentTimeMillis();
-		System.out.println(yearOf(now)+"-"+monthOf(now)+"-"+dayOfMonthOf(now));
-		System.out.println(hourOf(now)+":"+minuteOf(now)+":"+secondsOf(now));
-	}
 }
