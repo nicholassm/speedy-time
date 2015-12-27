@@ -4,7 +4,7 @@ package systems.speedy.lmf.time;
  * Utility class for converting milliseconds since the Epoch into date and time values.
  * Note: Only timestamps after January 1st 1970 are supported.
  */
-public class DateTime {
+public class UTCDateTime {
 	private final long utcMillis;
 
 	private static final int  DAYS_PER_CYCLE     = 146097;
@@ -14,14 +14,14 @@ public class DateTime {
 	private static final long MILLIS_IN_AN_HOUR  = MILLIS_IN_A_MINUTE * 60L;
 	private static final long MILLIS_IN_A_DAY    = MILLIS_IN_AN_HOUR * 24L;
 
-	public DateTime(long utcMillis) {
+	public UTCDateTime(long utcMillis) {
 		assert utcMillis >= 0;
 
 		this.utcMillis = utcMillis;
 	}
 
-	public static DateTime now() {
-		return new DateTime(System.currentTimeMillis());
+	public static UTCDateTime now() {
+		return new UTCDateTime(System.currentTimeMillis());
 	}
 
 	public static int yearOf(long utcMillis) {
