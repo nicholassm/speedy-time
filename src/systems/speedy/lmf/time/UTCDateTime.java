@@ -78,6 +78,12 @@ public class UTCDateTime {
 		return (int) ((utcMillis % MILLIS_PER_MINUTE) / MILLIS_PER_SECOND);
 	}
 
+	public static int milliSecondsOf(long utcMillis) {
+		assert utcMillis >= 0;
+
+		return (int) (utcMillis % MILLIS_PER_SECOND);
+	}
+
 	public int getYear() {
 		return yearOf(utcMillis);
 	}
@@ -100,6 +106,10 @@ public class UTCDateTime {
 
 	public int getSeconds() {
 		return secondsOf(utcMillis);
+	}
+
+	public int getMilliSeconds() {
+		return milliSecondsOf(utcMillis);
 	}
 
 	public long asUtcMillis() {
