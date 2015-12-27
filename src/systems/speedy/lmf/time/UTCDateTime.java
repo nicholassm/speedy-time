@@ -27,16 +27,13 @@ public class UTCDateTime {
 	public static int yearOf(long utcMillis) {
 		assert utcMillis >= 0;
 
-		long epochDay   = utcMillis / MILLIS_IN_A_DAY;
-		long zeroDay    = epochDay + DAYS_0000_TO_1970;
-		// Find the March-based year.
-		zeroDay -= 60; // Adjust to 0000-03-01 so leap day is at end of four year cycle.
-		long yearEst    = (400 * zeroDay + 591) / DAYS_PER_CYCLE;
-		long doyEst     = zeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100 + yearEst / 400);
-		int marchDoy0   = (int) doyEst;
+		long marchBasedZeroDay = marchBasedZeroDayFrom(utcMillis);
+		long yearEst           = yearEstimateFrom(marchBasedZeroDay);
+		long doyEst            = dayOfYearEstimateFrom(marchBasedZeroDay, yearEst);
+		int marchDoy0          = (int) doyEst;
 		// Convert march-based values back to January-based.
-		int marchMonth0 = (marchDoy0 * 5 + 2) / 153;
-		yearEst += marchMonth0 / 10;
+		int marchMonth0        = marchMonth0From(marchDoy0);
+		yearEst               += marchMonth0 / 10;
 
 		return (int) yearEst;
 	}
@@ -44,15 +41,9 @@ public class UTCDateTime {
 	public static int monthOf(long utcMillis) {
 		assert utcMillis >= 0;
 
-		long epochDay   = utcMillis / MILLIS_IN_A_DAY;
-		long zeroDay    = epochDay + DAYS_0000_TO_1970;
-		// Find the March-based year.
-		zeroDay -= 60; // Adjust to 0000-03-01 so leap day is at end of four year cycle.
-		long yearEst    = (400 * zeroDay + 591) / DAYS_PER_CYCLE;
-		long doyEst     = zeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100 + yearEst / 400);
-		int marchDoy0   = (int) doyEst;
+		int marchDoy0   = marchBasedDoy0From(utcMillis);
 		// Convert march-based values back to January-based.
-		int marchMonth0 = (marchDoy0 * 5 + 2) / 153;
+		int marchMonth0 = marchMonth0From(marchDoy0);
 		int month       = (marchMonth0 + 2) % 12 + 1;
 
 		return month;
@@ -61,15 +52,9 @@ public class UTCDateTime {
 	public static int dayOfMonthOf(long utcMillis) {
 		assert utcMillis >= 0;
 
-		long epochDay   = utcMillis / MILLIS_IN_A_DAY;
-		long zeroDay    = epochDay + DAYS_0000_TO_1970;
-		// Find the March-based year.
-		zeroDay -= 60; // Adjust to 0000-03-01 so leap day is at end of four year cycle.
-		long yearEst    = (400 * zeroDay + 591) / DAYS_PER_CYCLE;
-		long doyEst     = zeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100 + yearEst / 400);
-		int marchDoy0   = (int) doyEst;
+		int marchDoy0   = marchBasedDoy0From(utcMillis);
 		// Convert march-based values back to January-based.
-		int marchMonth0 = (marchDoy0 * 5 + 2) / 153;
+		int marchMonth0 = marchMonth0From(marchDoy0);
 		int dom         = marchDoy0 - (marchMonth0 * 306 + 5) / 10 + 1;
 
 		return dom;
@@ -119,5 +104,33 @@ public class UTCDateTime {
 
 	public long asUtcMillis() {
 		return utcMillis;
+	}
+
+	private static int marchBasedDoy0From(long utcMillis) {
+		long marchBasedZeroDay = marchBasedZeroDayFrom(utcMillis);
+		long yearEst           = yearEstimateFrom(marchBasedZeroDay);
+		long doyEst            = dayOfYearEstimateFrom(marchBasedZeroDay, yearEst);
+		int marchDoy0          = (int) doyEst;
+		return marchDoy0;
+	}
+
+	private static long marchBasedZeroDayFrom(long utcMillis) {
+		long epochDay            = utcMillis / MILLIS_PER_DAY;
+		long zeroDay             = epochDay + DAYS_0000_TO_1970;
+		// Find the March-based year by adjusting to 0000-03-01 so leap day is at end of four year cycle.
+		long marchedBasedZeroDay = zeroDay - 60;
+		return marchedBasedZeroDay;
+	}
+
+	private static int marchMonth0From(int marchDoy0) {
+		return (marchDoy0 * 5 + 2) / 153;
+	}
+
+	private static long dayOfYearEstimateFrom(long marchBasedZeroDay, long yearEst) {
+		return marchBasedZeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100 + yearEst / 400);
+	}
+
+	private static long yearEstimateFrom(long marchBasedZeroDay) {
+		return (400 * marchBasedZeroDay + 591) / DAYS_PER_CYCLE;
 	}
 }
