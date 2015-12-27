@@ -7,12 +7,12 @@ package systems.speedy.lmf.time;
 public class UTCDateTime {
 	private final long utcMillis;
 
-	private static final int  DAYS_PER_CYCLE     = 146097;
-	private static final long DAYS_0000_TO_1970  = (DAYS_PER_CYCLE * 5L) - (30L * 365L + 7L);
-	private static final long MILLIS_IN_A_SECOND = 1_000L;
-	private static final long MILLIS_IN_A_MINUTE = MILLIS_IN_A_SECOND * 60L;
-	private static final long MILLIS_IN_AN_HOUR  = MILLIS_IN_A_MINUTE * 60L;
-	private static final long MILLIS_IN_A_DAY    = MILLIS_IN_AN_HOUR * 24L;
+	private static final int  DAYS_PER_CYCLE    = 146097;
+	private static final long DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5L) - (30L * 365L + 7L);
+	private static final long MILLIS_PER_SECOND = 1_000L;
+	private static final long MILLIS_PER_MINUTE = MILLIS_PER_SECOND * 60L;
+	private static final long MILLIS_PER_HOUR   = MILLIS_PER_MINUTE * 60L;
+	private static final long MILLIS_PER_DAY    = MILLIS_PER_HOUR * 24L;
 
 	public UTCDateTime(long utcMillis) {
 		assert utcMillis >= 0;
@@ -78,19 +78,19 @@ public class UTCDateTime {
 	public static int hourOf(long utcMillis) {
 		assert utcMillis >= 0;
 
-		return (int) ((utcMillis % MILLIS_IN_A_DAY) / MILLIS_IN_AN_HOUR);
+		return (int) ((utcMillis % MILLIS_PER_DAY) / MILLIS_PER_HOUR);
 	}
 
 	public static int minutesOf(long utcMillis) {
 		assert utcMillis >= 0;
 
-		return (int) ((utcMillis % MILLIS_IN_AN_HOUR) / MILLIS_IN_A_MINUTE);
+		return (int) ((utcMillis % MILLIS_PER_HOUR) / MILLIS_PER_MINUTE);
 	}
 
 	public static int secondsOf(long utcMillis) {
 		assert utcMillis >= 0;
 
-		return (int) ((utcMillis % MILLIS_IN_A_MINUTE) / MILLIS_IN_A_SECOND);
+		return (int) ((utcMillis % MILLIS_PER_MINUTE) / MILLIS_PER_SECOND);
 	}
 
 	public int getYear() {
