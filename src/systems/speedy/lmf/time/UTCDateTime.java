@@ -104,4 +104,16 @@ public class UTCDateTime {
 		if (millisSinceTheEpoch != other.millisSinceTheEpoch) return false;
 		return true;
 	}
+
+	@Override public String toString() {
+		return String.format("%d-%02d-%02dT%02d:%02d:%02d.%03dZ",
+				yearOf(millisSinceTheEpoch),
+				monthOf(millisSinceTheEpoch),
+				dayOfMonthOf(millisSinceTheEpoch),
+				hourOf(millisSinceTheEpoch),
+				minutesOf(millisSinceTheEpoch),
+				secondsOf(millisSinceTheEpoch),
+				milliSecondsOf(millisSinceTheEpoch)
+			);
+	}
 }
