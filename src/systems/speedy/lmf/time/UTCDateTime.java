@@ -9,7 +9,7 @@ import static systems.speedy.lmf.time.UnixTimestampConverter.secondsOf;
 import static systems.speedy.lmf.time.UnixTimestampConverter.yearOf;
 
 /**
- * Utility class for converting milliseconds since the Epoch (Unix Time) into date and time values.<br/>
+ * Immutable representation of a datetime instance.
  * <b>Note:</b> Only Unix Timestamps after 00:00:00 January 1st 1970 are supported.
  */
 public class UTCDateTime {
@@ -30,8 +30,6 @@ public class UTCDateTime {
 	public static UTCDateTime now() {
 		return new UTCDateTime(System.currentTimeMillis());
 	}
-
-
 
 	/**
 	 * @return The year of this UTCDateTime.

@@ -1,5 +1,9 @@
 package systems.speedy.lmf.time;
 
+/**
+ * Utility class for converting milliseconds since the Epoch (Unix Time) into date and time values.<br/>
+ * <b>Note:</b> Only Unix Timestamps after 00:00:00 January 1st 1970 are supported.
+ */
 public class UnixTimestampConverter {
 	private static final int  DAYS_PER_CYCLE    = 146097;
 	private static final long DAYS_0000_TO_1970 = (DAYS_PER_CYCLE * 5L) - (30L * 365L + 7L);
