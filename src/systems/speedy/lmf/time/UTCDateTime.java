@@ -186,6 +186,19 @@ public class UTCDateTime {
 		return millisSinceTheEpoch;
 	}
 
+	@Override public int hashCode() {
+		return 31 + (int) (millisSinceTheEpoch ^ (millisSinceTheEpoch >>> 32));
+	}
+
+	@Override public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		UTCDateTime other = (UTCDateTime) obj;
+		if (millisSinceTheEpoch != other.millisSinceTheEpoch) return false;
+		return true;
+	}
+
 	private static int marchBasedDoy0From(long millisSinceTheEpoch) {
 		long marchBasedZeroDay = marchBasedZeroDayFrom(millisSinceTheEpoch);
 		long yearEst           = yearEstimateFrom(marchBasedZeroDay);
