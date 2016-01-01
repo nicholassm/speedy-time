@@ -16,12 +16,12 @@ public class PerfTest1 extends AbstractPerfTest {
 		long start = System.nanoTime();
 
 		for (long timestamp: timestamps) {
-			sum += UTCDateTime.yearOf(timestamp);
-			sum += UTCDateTime.monthOf(timestamp);
-			sum += UTCDateTime.dayOfMonthOf(timestamp);
-			sum += UTCDateTime.hourOf(timestamp);
-			sum += UTCDateTime.minutesOf(timestamp);
-			sum += UTCDateTime.secondsOf(timestamp);
+			sum += UnixTimestampConverter.yearOf(timestamp);
+			sum += UnixTimestampConverter.monthOf(timestamp);
+			sum += UnixTimestampConverter.dayOfMonthOf(timestamp);
+			sum += UnixTimestampConverter.hourOf(timestamp);
+			sum += UnixTimestampConverter.minutesOf(timestamp);
+			sum += UnixTimestampConverter.secondsOf(timestamp);
 		}
 
 		long duration = toMilliSeconds(System.nanoTime() - start);
