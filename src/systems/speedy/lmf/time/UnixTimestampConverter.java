@@ -11,6 +11,7 @@ public class UnixTimestampConverter {
 	private static final long MILLIS_PER_MINUTE = MILLIS_PER_SECOND * 60L;
 	private static final long MILLIS_PER_HOUR   = MILLIS_PER_MINUTE * 60L;
 	private static final long MILLIS_PER_DAY    = MILLIS_PER_HOUR * 24L;
+
 	/**
 	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the year from.<br/>
 	 *         Note: Only positive timestamps are supported.
