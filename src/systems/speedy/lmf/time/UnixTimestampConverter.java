@@ -23,6 +23,11 @@ public class UnixTimestampConverter {
 		long marchBasedZeroDay = marchBasedZeroDayFrom(millisSinceTheEpoch);
 		long yearEst           = yearEstimateFrom(marchBasedZeroDay);
 		long doyEst            = dayOfYearEstimateFrom(marchBasedZeroDay, yearEst);
+		if (doyEst < 0) {
+			// Fix estimate
+			yearEst--;
+			doyEst = marchBasedZeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100 + yearEst / 400);
+		}
 		int marchDoy0          = (int) doyEst;
 		// Convert march-based values back to January-based.
 		int marchMonth0        = marchMonth0From(marchDoy0);
@@ -111,6 +116,11 @@ public class UnixTimestampConverter {
 		long marchBasedZeroDay = marchBasedZeroDayFrom(millisSinceTheEpoch);
 		long yearEst           = yearEstimateFrom(marchBasedZeroDay);
 		long doyEst            = dayOfYearEstimateFrom(marchBasedZeroDay, yearEst);
+		if (doyEst < 0) {
+			// Fix estimate
+			yearEst--;
+			doyEst = marchBasedZeroDay - (365 * yearEst + yearEst / 4 - yearEst / 100 + yearEst / 400);
+		}
 		int marchDoy0          = (int) doyEst;
 		return marchDoy0;
 	}
