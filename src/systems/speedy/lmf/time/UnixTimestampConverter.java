@@ -117,7 +117,7 @@ public class UnixTimestampConverter {
 
 	private static long marchBasedZeroDayFrom(long millisSinceTheEpoch) {
 		long epochDay            = millisSinceTheEpoch / MILLIS_PER_DAY;
-		long zeroDay             = epochDay + DAYS_0000_TO_1970;
+		long zeroDay             = DAYS_0000_TO_1970 + epochDay;
 		// Find the March-based year by adjusting to 0000-03-01 so leap day is at end of four year cycle.
 		long marchedBasedZeroDay = zeroDay - 60;
 		return marchedBasedZeroDay;
