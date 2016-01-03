@@ -55,9 +55,6 @@ public class TestUnixTimestampConverter {
 		}
 
 		for (long timestamp: timestamps) {
-			if (timestamp == 1187857640806559252L
-			 || timestamp == 6602694869557219196L) continue;
-
 			LocalDateTime ldt = LocalDateTime.ofEpochSecond(timestamp / 1_000, 0, ZoneOffset.UTC);
 
 			assertEquals("timestamp="+timestamp, ldt.getYear(), UnixTimestampConverter.yearOf(timestamp));
