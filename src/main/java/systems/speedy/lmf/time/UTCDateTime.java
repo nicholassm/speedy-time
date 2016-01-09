@@ -17,8 +17,8 @@ public class UTCDateTime {
 
 	/**
 	 * Creates a new UTCDateTime which is a simple wrapper around the Unix Timestamp.
-	 * @param millisSinceTheEpoch The Unix Timestamp in milliseconds since the Epoch (00:00:00 at January 1st 1970).<br/>
-	 *        Note: Only positive timestamps are supported.
+	 * @param millisSinceTheEpoch The Unix Timestamp in milliseconds since the Epoch (00:00:00 at January 1st 1970).
+	 *        <b>Note:</b> Only positive timestamps are supported.
 	 */
 	public UTCDateTime(long millisSinceTheEpoch) {
 		assert millisSinceTheEpoch >= 0;

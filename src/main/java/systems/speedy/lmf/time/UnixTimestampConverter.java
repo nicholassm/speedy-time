@@ -1,7 +1,7 @@
 package systems.speedy.lmf.time;
 
 /**
- * Utility class for converting milliseconds since the Epoch (Unix Time) into date and time values.<br/>
+ * Utility class for converting milliseconds since the Epoch (Unix Time) into date and time values.
  * <b>Note:</b> Only Unix Timestamps after 00:00:00 January 1st 1970 are supported.
  */
 public class UnixTimestampConverter {
@@ -13,8 +13,8 @@ public class UnixTimestampConverter {
 	private static final long MILLIS_PER_DAY    = MILLIS_PER_HOUR * 24L;
 
 	/**
-	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the year from.<br/>
-	 *         Note: Only positive timestamps are supported.
+	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the year from.
+	 *         <b>Note:</b> Only positive timestamps are supported.
 	 * @return The year of the Unix Timestamp.
 	 */
 	public static int yearOf(long millisSinceTheEpoch) {
@@ -37,8 +37,8 @@ public class UnixTimestampConverter {
 	}
 
 	/**
-	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the month from.<br/>
-	 *         Note: Only positive timestamps are supported.
+	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the month from.
+	 *         <b>Note:</b> Only positive timestamps are supported.
 	 * @return The month of the year of the Unix Timestamp (1-12).
 	 */
 	public static int monthOf(long millisSinceTheEpoch) {
@@ -53,8 +53,8 @@ public class UnixTimestampConverter {
 	}
 
 	/**
-	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the day of the month from.<br/>
-	 *         Note: Only positive timestamps are supported.
+	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the day of the month from.
+	 *         <b>Note:</b> Only positive timestamps are supported.
 	 * @return The day of the month of the Unix Timestamp (1-31).
 	 */
 	public static int dayOfMonthOf(long millisSinceTheEpoch) {
@@ -69,8 +69,8 @@ public class UnixTimestampConverter {
 	}
 
 	/**
-	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the hour from.<br/>
-	 *         Note: Only positive timestamps are supported.
+	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the hour from.
+	 *         <b>Note:</b> Only positive timestamps are supported.
 	 * @return The hour of the day of the Unix Timestamp (0-23).
 	 */
 	public static int hourOf(long millisSinceTheEpoch) {
@@ -80,8 +80,8 @@ public class UnixTimestampConverter {
 	}
 
 	/**
-	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the minutes from.<br/>
-	 *         Note: Only positive timestamps are supported.
+	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the minutes from.
+	 *         <b>Note:</b> Only positive timestamps are supported.
 	 * @return The minutes of the hour of the Unix Timestamp (0-59).
 	 */
 	public static int minutesOf(long millisSinceTheEpoch) {
@@ -91,8 +91,8 @@ public class UnixTimestampConverter {
 	}
 
 	/**
-	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the seconds from.<br/>
-	 *         Note: Only positive timestamps are supported.
+	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the seconds from.
+	 *         <b>Note:</b> Only positive timestamps are supported.
 	 * @return The seconds of the minute of the Unix Timestamp (0-59).
 	 */
 	public static int secondsOf(long millisSinceTheEpoch) {
@@ -102,8 +102,8 @@ public class UnixTimestampConverter {
 	}
 
 	/**
-	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the milliseconds from.<br/>
-	 *         Note: Only positive timestamps are supported.
+	 * @param  millisSinceTheEpoch The Unix Timestamp to calculate the milliseconds from.
+	 *         <b>Note:</b> Only positive timestamps are supported.
 	 * @return The milliseconds of the second of the Unix Timestamp (0-999).
 	 */
 	public static int milliSecondsOf(long millisSinceTheEpoch) {
