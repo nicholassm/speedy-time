@@ -9,15 +9,81 @@
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
-// In this section you declare where to find the dependencies of your project
+group            = "systems.speedy.time"
+archivesBaseName = "speedy-time"
+version          = "1.0.0"
+
 repositories {
-	// Use 'jcenter' for resolving your dependencies.
-	// You can declare any Maven/Ivy/file repository here.
-	jcenter()
+	mavenCentral()
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
 	testCompile 'junit:junit:4.12'
+}
+
+task javadocJar(type: Jar) {
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+signing {
+	sign configurations.archives
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+			repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+				authentication(userName: ossrhUsername, password: ossrhPassword)
+			}
+
+			snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+				authentication(userName: ossrhUsername, password: ossrhPassword)
+			}
+
+			pom.project {
+				name 'Speedy Time'
+				packaging 'jar'
+
+				description 'Memory efficient library for converting Unix Timestamps to the normal fields of a DateTime.'
+				url 'https://github.com/nicholassm/speedy-time'
+
+				scm {
+					connection 'scm:git:git://github.com/nicholassm/speedy-time'
+					developerConnection 'scm:git:git://github.com/nicholassm/speedy-time'
+					url 'https://github.com/nicholassm/speedy-time'
+				}
+
+				licenses {
+					license {
+						name 'The MIT License'
+						url 'https://opensource.org/licenses/MIT'
+					}
+				}
+
+				developers {
+					developer {
+						id 'nicholassm'
+						name 'Nicholas Schultz-Møller'
+						email 'nicholassm@gmail.com'
+					}
+				}
+			}
+		}
+	}
 }
