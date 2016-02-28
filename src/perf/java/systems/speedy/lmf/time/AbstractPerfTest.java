@@ -15,12 +15,12 @@ public abstract class AbstractPerfTest {
 		generateTestData(timestamps);
 
 		for (int i = 0; i < Constants.NUM_OF_WARMUPS; ++i) {
-			long warmUpTime = conductTest(timestamps);
+			long warmUpTime = conductTestInMs(timestamps);
 			System.out.println("Warm up time #"+i+": "+warmUpTime+"ms");
 		}
 
 		for (int i = 0; i < Constants.REPETITIONS; ++i) {
-			timings.add(conductTest(timestamps));
+			timings.add(conductTestInMs(timestamps));
 		}
 
 		for (int i = 0; i < Constants.REPETITIONS; ++i) {
@@ -28,16 +28,26 @@ public abstract class AbstractPerfTest {
 		}
 
 		double average = timings.stream().mapToLong(l -> l).average().orElse(0.0);
-		System.out.println("Avg: "+average);
-		System.out.println("Max: "+timings.stream().mapToLong(l -> l).max().orElse(0));
-		System.out.println("Min: "+timings.stream().mapToLong(l -> l).min().orElse(0));
-		System.out.println("Average time per timestamp: "+(average * 1_000_000)/Constants.NUM_OF_TIMESTAMPS+" ns");
+		System.out.println("Avg: "+average+"ms");
+		System.out.println("Max: "+timings.stream().mapToLong(l -> l).max().orElse(0)+"ms");
+		System.out.println("Min: "+timings.stream().mapToLong(l -> l).min().orElse(0)+"ms");
+		System.out.println("Std: "+Math.sqrt(timings.stream().mapToDouble(l -> Math.pow(l - average, 2.0)).sum() / Constants.REPETITIONS));
+		System.out.println("Average time per timestamp: "+(average * 1_000_000)/Constants.NUM_OF_TIMESTAMPS+"ms");
 	}
 
-	public static long toMilliSeconds(long warmUpTime) {
-		return warmUpTime / 1_000_000L;
+	public static long toMilliSeconds(long timeInNs) {
+		return timeInNs / 1_000_000L;
 	}
 
 	protected abstract void generateTestData(long[] timestamps);
+
+	/**
+	 * @param timestamps The array of timestamps to perform the conversions on.
+	 * @return The duration in ns of all the conversions.
+	 */
 	protected abstract long conductTest(long[] timestamps);
+
+	public long conductTestInMs(long[] timestamps) {
+		return toMilliSeconds(conductTest(timestamps));
+	}
 }

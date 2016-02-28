@@ -29,7 +29,7 @@ public class PerfTest3 extends AbstractPerfTest{
 			sum += ldt.getSecond();
 		}
 
-		long duration = toMilliSeconds(System.nanoTime() - start);
+		long duration = System.nanoTime() - start;
 		// To ensure computations are not optimized away.
 		System.out.println(sum);
 

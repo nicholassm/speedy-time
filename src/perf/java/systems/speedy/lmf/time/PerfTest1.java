@@ -24,7 +24,7 @@ public class PerfTest1 extends AbstractPerfTest {
 			sum += UnixTimestampConverter.secondsOf(timestamp);
 		}
 
-		long duration = toMilliSeconds(System.nanoTime() - start);
+		long duration = System.nanoTime() - start;
 		// To ensure computations are not optimized away.
 		System.out.println(sum);
 
