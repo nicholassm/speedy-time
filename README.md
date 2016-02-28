@@ -22,7 +22,7 @@ Then use any of the utility methods, e.g. `yearOf` to extract the year part of t
 
 First create a `UTCDateTime`:
 
-    long unixTimeStampInMillis = // Get the timestamp, e.g. System.currentTimeMilis()
+    long unixTimeStampInMillis = // Get the timestamp, e.g. System.currentTimeMillis()
     UTCDateTime udt            = new UTCDateTime(unixTimeStampInMillis);
 
 Then use one of the getter methods, e.g.:
