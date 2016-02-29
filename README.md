@@ -7,7 +7,7 @@ The primary use case for this library is in financial applications where memory 
 
 **Note:** The implementation of the date related fields in this library is using the same computations as are used in the method `ofEpochDay` in `java.time.LocalDate`.
 
-## Guide
+## Usage Guide
 There are two flavors of the library: Using it as utility methods (static methods) or as plan objects.
 
 ### Using Utility Methods
